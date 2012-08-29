@@ -1,0 +1,34 @@
+GuiguiBlog_home:
+    pattern:  /{page}
+    defaults: { _controller: GuiguiBlogBundle:Blog:index, page: 1 }
+    requirements:
+        page: \d*
+
+GuiguiBlog_add:
+    pattern:  /add
+    defaults: { _controller: GuiguiBlogBundle:Blog:add }
+
+GuiguiBlog_view:
+    pattern:  /article/{id}
+    defaults: { _controller: GuiguiBlogBundle:Blog:view }
+    requirements:
+        id: \d+
+
+GuiguiBlog_edit:
+    pattern:  /edit/{id}
+    defaults: { _controller: GuiguiBlogBundle:Blog:edit }
+    requirements:
+        id: \d+
+
+GuiguiBlog_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: GuiguiBlogBundle:Blog:delete }
+    requirements:
+        id: \d+
+
+GuiguiBlog_view_slug:
+    pattern:  /{year}/{slug}.{format}
+    defaults: { _controller: GuiguiBlogBundle:Blog:viewSlug, format: html }
+    requirements:
+        year:   \d{4}
+        format: html|xml

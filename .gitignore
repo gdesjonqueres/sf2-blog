@@ -3,6 +3,8 @@ app/bootstrap*
 
 # Symfony directories
 vendor/*
+build/*
+bin/*
 */logs/*
 */cache/*
 web/uploads/*
@@ -10,3 +12,11 @@ web/bundles/*
 
 # Configuration files
 app/config/parameters.ini
+
+# Composer
+composer.phar
+
+# Eclipse
+.buildpath
+.settings
+.project

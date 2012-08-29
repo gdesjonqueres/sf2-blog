@@ -1,0 +1,50 @@
+{% extends "GuiguiBlogBundle::layout.html.twig" %}
+
+{% block title %}
+Lecture d'un article - {{ parent() }}
+{% endblock %}
+
+{% block guiguiblog_body %}
+
+    <h2>
+        {# On vérifie qu'une image soit bien associée à l'article #}
+        {% if article.image is not null %}
+        <img src="{{ article.image.url }}" alt="{{ article.image.alt }}" />
+        {% endif %}
+        {{ article.title }}
+    </h2>
+    <i>Par {{ article.author }}, le {{ article.date|date('d/m/Y') }}</i>
+
+    {% if article.categories.count > 0 %}
+		- Catégories :
+		{% for category in article.categories %}
+			{{ category.name }}
+		{% if not loop.last %} - {% endif %}
+		{% endfor %}
+	{% endif %}
+
+	{% if articleSkills|length > 0 %}
+	<div>
+		Niveau de compétences requises pour la lecture de cet article:
+		<ul>
+		{% for articleSkill in articleSkills %}
+			<li>{{ articleSkill.skill.name }} : {{ articleSkill.level }}</li>
+		{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
+
+    <div class="well">{{ article.content }}</div>
+    <p>
+        <a href="{{ path('GuiguiBlog_home') }}" class="btn">
+            <i class="icon-chevron-left"></i> Retour à la liste
+        </a>
+        <a href="{{ path('GuiguiBlog_edit', {'id': article.id}) }}" class="btn">
+           <i class="icon-edit"></i> Modifier l'article
+        </a>
+        <a href="{{ path('GuiguiBlog_delete', {'id': article.id}) }}" class="btn">
+           <i class="icon-trash"></i> Supprimer l'article
+        </a>
+    </p>
+
+{% endblock %}

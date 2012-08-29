@@ -1,0 +1,17 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     localhost
+    database_port:     ~
+    database_name:     symfony
+    database_user:     root
+    database_password: ~
+
+    mailer_transport:  gmail
+    mailer_host:       
+    mailer_user:       g.desjonqueres
+    mailer_password:   or1lusag
+
+    locale:            en
+    secret:            ThisTokenIsNotSoSecretChangeIt
+    
+    app_webmaster:     Guigui
