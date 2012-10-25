@@ -43,7 +43,7 @@ class Comment
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Guigui\BlogBundle\Entity\Article")
+     * @ORM\ManyToOne(targetEntity="Guigui\BlogBundle\Entity\Article", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
     private $article;
@@ -141,14 +141,14 @@ class Comment
     public function setArticle(\Guigui\BlogBundle\Entity\Article $article)
     {
         $this->article = $article;
-    
+
         return $this;
     }
 
     /**
      * Get article
      *
-     * @return Guigui\BlogBundle\Entity\Article 
+     * @return Guigui\BlogBundle\Entity\Article
      */
     public function getArticle()
     {

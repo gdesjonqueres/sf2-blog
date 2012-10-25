@@ -69,6 +69,12 @@ class Article
      */
     private $categories;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Guigui\BlogBundle\Entity\Comment", mappedBy="article")
+     * @var unknown_type
+     */
+    private $comments;
+
     public function __construct()
     {
         $this->date = new \DateTime();
@@ -254,5 +260,63 @@ class Article
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param Guigui\BlogBundle\Entity\Category $categories
+     * @return Article
+     */
+    public function addCategorie(\Guigui\BlogBundle\Entity\Category $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param Guigui\BlogBundle\Entity\Category $categories
+     */
+    public function removeCategorie(\Guigui\BlogBundle\Entity\Category $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Add comments
+     *
+     * @param Guigui\BlogBundle\Entity\Comment $comments
+     * @return Article
+     */
+    public function addComment(\Guigui\BlogBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+        $comments->setArticle($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param Guigui\BlogBundle\Entity\Comment $comments
+     */
+    public function removeComment(\Guigui\BlogBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+        $comments->setArticle(null);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }
